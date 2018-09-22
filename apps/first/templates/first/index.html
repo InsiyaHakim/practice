@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+</head>
+<body>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %}
+                class="{{ message.tags }}"
+                {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="container">
+        <h1>Register</h1>
+        <form action="{% url 'new:create' %}" method="POST">
+            {% csrf_token %}
+            <label for="f_name">First Name</label>
+            <input type="text" name="f_name">
+            <label for="l_name">Last Name</label>
+            <input type="text" name="l_name">
+            <label for="email">Email</label>
+            <input type="text" name="email">
+            <label for="password">Password</label>
+            <input type="password" name="password">
+            <label for="confirm">Confirm Password</label>
+            <input type="password" name="confirm">
+            <input type="submit" value="Register">
+        </form>
+    </div>
+    <div class="container">
+        <h1>Login</h1>
+        <form action="{% url 'new:log' %}" method="POST">
+            {% csrf_token %}
+            <label for="email">Email</label>
+            <input type="text" name="email">
+            <label for="password">Password</label>
+            <input type="password" name="password">
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>
+
